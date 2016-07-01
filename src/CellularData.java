@@ -35,24 +35,26 @@ public class CellularData {
 		}
 	}
 	
-	// This method 
+	// This method first checks the name of the country given and the names of the country in the table
+	// then proceeds to find the index of the starting/ending year given by the test file to find the sum 
+	// of the subscriptions of the proper country's subscriptions  in the proper years. 
 	public double getNumSubscriptionsInCountryForPeriod(String country, int sYear, int eYear) {
-		double sum = 0;
-
-		for (int i = 1; i < table.length; i++) {
-
-            if (country.equalsIgnoreCase((String) table[i][0])) { //matches with the parameters passed ignoring CAPS
+		double sum = 0; // Initialize sum.
+		// read through table 
+		for (int i = 1; i < table.length; i++) { 
+			// cast the table double array as a String to be able to compare.
+            if (country.equalsIgnoreCase((String) table[i][0])) { // passed ignoring CAPS 
                 int start = 1 + sYear - startingYear;   //first index position of the year
                 int end = start + (eYear - sYear);  //end position of the year
 
                 if (start >= 0 && end < table[i].length) {   //checks to see if index position is out of bounds
 
                     for (int k = start; k <= end; k++) {
-                        sum += (Double) table[i][k];   //sum of the stats
+                        sum += (Double) table[i][k];   //sum of the subscriptions 
                     }
                 }
                 else {
-                    //returns Error messgae and -1
+                    //returns Error message and sets the sum to -1 
                     System.out.println("ERROR : requested year "+sYear+" from "+ country+" is less than starting year "+this.startingYear);
                     sum = -1;
                     }
@@ -60,8 +62,9 @@ public class CellularData {
 		}
 		return sum;
     }
-
-	public String toString() { //prints the array.
+	
+	//prints the array
+	public String toString() { 
 		for(Object []a: table) {
 			for(Object k:a) {
 				System.out.print(k + "\t");
