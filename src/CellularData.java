@@ -1,18 +1,21 @@
 public class CellularData {
 	
 	private Object [][] table;
-	public CellularData(int numRows, int numColumns, int startingYear) {
-		table = new Object[numRows + 1][numColumns + 1]; // <- +1 for the heading line and the country name column
-
-	    // write head line to array
-	    table[0][0] = "Country";
-	    for (int i = 1; i <= numColumns; i++) {
-	      table[0][i] = startingYear++;
-	    } 	
-	}
-
+	private final int startingYear;
+	//private double sum = 0;
+    //private int countryNum = 0;
 	
-	public void addCountry(String string, double[] country) {
+    public CellularData(int rows, int columns, int year) {
+        table = new Object[rows + 1][columns + 1];
+        table[0][0] = "Country";
+        this.startingYear = year;
+        for (int i = 1; i <= columns; i++) {
+            table[0][i] = year++;
+        }
+     //   countryNum = 1;
+    }
+	
+    public void addCountry(String string, double[] country) {
 		System.out.print(string + " ");
 		for(int i = 0; i<= country.length - 1; i++) {
 			
@@ -21,35 +24,30 @@ public class CellularData {
 		System.out.println(" ");
 	}
 	
-	public double getNumSubscriptionsInCountryForPeriod(String countrylabel, int startYear,
-			int endYear) {
-		//table[0][0] = countrylabel;
-		System.out.println("Country is " + countrylabel + " ,subscriptions from " + startYear + " to " + endYear);
-		System.out.println("the output is:");
-		int startingYearIndex = 0;
-		for (int index = 0; index < table.length ; index++) {
-			int value = (Integer) table[0][index];
-			if (value == startYear) {
-				return startingYearIndex;
-			}			
-		}
-		int endingYearIndex = 0; 
-		for(int index2 = 0; index2 < table.length; index2++) {
-			int value = (Integer) table[0][index2];
-			if(value == endYear){
-				return endingYearIndex;			 
-			}
-		
-		}
-		
-		double subscriptions = 0.0;
-		for(int i = startingYearIndex + 1; i<= endingYearIndex - 1 ; i++) { 
-			double valueOf = (Double) table[0][i]; 
-			subscriptions = subscriptions + valueOf ;
-			System.out.println(subscriptions);
-		}
-		
-		return subscriptions;
-		}
+	public double getNumSubscriptionsInCountryForPeriod(String country, int sYear, int eYear) {
+		double sum = 0;
+		 
+	    for (int i = 1; i < table.length; i++) {
+	    	
+	        if (country.equalsIgnoreCase((String) table[i][0])) {
+	            int start = 1 + sYear - startingYear;
+	            int end = start + (eYear - sYear);
+	           
+	            if (start >= 0 && end < table[i].length) {
+
+	                for (int k = start; k <= end; k++) {
+	                    System.out.println(">> " + country + " adding " + table[i][k]);
+	                    sum += (Double) table[i][k];
+	                    
+	                }
+	                
+	            }
+	           
+	        }
+	        
+	    }
+	    return sum;
+	}
+
 
 }
