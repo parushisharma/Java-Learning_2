@@ -21,22 +21,22 @@ public class CellularData {
 		System.out.println(" ");
 	}
 	
-	public double getNumSubscriptionsInCountryForPeriod(String countrylabel, int startingYear,
-			int endingYear) {
+	public double getNumSubscriptionsInCountryForPeriod(String countrylabel, int startYear,
+			int endYear) {
 		//table[0][0] = countrylabel;
-		System.out.println("Country is " + countrylabel + " ,subscriptions from " + startingYear + " to " + endingYear);
+		System.out.println("Country is " + countrylabel + " ,subscriptions from " + startYear + " to " + endYear);
 		System.out.println("the output is:");
 		int startingYearIndex = 0;
 		for (int index = 0; index < table.length ; index++) {
 			int value = (Integer) table[0][index];
-			if (value == startingYear) {
+			if (value == startYear) {
 				return startingYearIndex;
 			}			
 		}
 		int endingYearIndex = 0; 
 		for(int index2 = 0; index2 < table.length; index2++) {
 			int value = (Integer) table[0][index2];
-			if(value == endingYear){
+			if(value == endYear){
 				return endingYearIndex;			 
 			}
 		
