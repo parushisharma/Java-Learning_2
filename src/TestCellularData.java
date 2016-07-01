@@ -3,7 +3,7 @@
  *  Given a country name and a range of years, computes the total number of subscriptions
  *  during that period.
  *
- *  @author Foothill College, [YOUR NAME HERE]
+ *  @author Foothill College, Parushi Sharma 
  */
 public class TestCellularData {
 
