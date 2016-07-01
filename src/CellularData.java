@@ -25,6 +25,8 @@ public class CellularData {
 	}
 	
 	public double getNumSubscriptionsInCountryForPeriod(String country, int sYear, int eYear) {
+		System.out.println("Country is " + "\"" + country +"\"," + " subscriptions from " + sYear + " to " + eYear);
+		System.out.println("the output is:");
 		double sum = 0;
 		 
 	    for (int i = 1; i < table.length; i++) {
@@ -32,16 +34,18 @@ public class CellularData {
 	        if (country.equalsIgnoreCase((String) table[i][0])) {
 	            int start = 1 + sYear - startingYear;
 	            int end = start + (eYear - sYear);
+	            
 	           
-	            if (start >= 0 && end < table[i].length) {
+	            if (start >= 0 && end <= table[i].length) {
 
-	                for (int k = start; k <= end; k++) {
+	                for (int k = start; k < end; k++) {
 	                    System.out.println(">> " + country + " adding " + table[i][k]);
 	                    sum += (Double) table[i][k];
 	                    
 	                }
 	                
 	            }
+	            else return -1;
 	           
 	        }
 	        
