@@ -39,6 +39,8 @@ public class CellularData {
 	// then proceeds to find the index of the starting/ending year given by the test file to find the sum 
 	// of the subscriptions of the proper country's subscriptions  in the proper years. 
 	public double getNumSubscriptionsInCountryForPeriod(String country, int sYear, int eYear) {
+		System.out.println("Country is " + "\"" + country +"\"," + " subscriptions from " + sYear + " to " + eYear);
+		System.out.println("the output is:");
 		double sum = 0; // Initialize sum.
 		// read through table 
 		for (int i = 1; i < table.length; i++) { 
